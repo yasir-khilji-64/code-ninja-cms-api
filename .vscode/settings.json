@@ -1,0 +1,14 @@
+{
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "material-icon-theme.activeIconPack": "nest",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
