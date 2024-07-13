@@ -1,7 +1,7 @@
 import helmet from 'helmet';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
@@ -11,6 +11,11 @@ async function bootstrap() {
     const configService = app.get<ConfigService>(ConfigService);
     const port = configService.get('PORT');
     app.use(helmet());
+    app.useGlobalPipes(
+      new ValidationPipe({
+        transform: true,
+      }),
+    );
 
     await app.listen(port, '0.0.0.0', async () => {
       logger.log(`Server listening on ${await app.getUrl()}`);
