@@ -1,5 +1,12 @@
 import { Transform } from 'class-transformer';
-import { IsBoolean, IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty({
@@ -42,10 +49,34 @@ export class CreateUserDto {
   })
   dob: Date;
 
+  @IsOptional()
+  @IsString({
+    message: 'Please provide a valid picture url',
+  })
+  @IsUrl(
+    {},
+    {
+      message: 'Please provide a valid picture url',
+    },
+  )
+  picture?: string;
+
   @IsNotEmpty({
     message: 'Password cannot be empty',
   })
   password: string;
+
+  @IsOptional()
+  @IsString({
+    message: 'Please provide a valid website url',
+  })
+  @IsUrl(
+    {},
+    {
+      message: 'Please provide a valid website url',
+    },
+  )
+  website?: string;
 
   @IsNotEmpty({
     message: 'Gender cannot be empty',
@@ -55,4 +86,16 @@ export class CreateUserDto {
   })
   @Transform(({ value }) => Boolean(value))
   gender: boolean;
+
+  @IsOptional()
+  @IsString({
+    message: 'Please provide a valid social media handle',
+  })
+  socialMediaHandler?: string;
+
+  @IsOptional()
+  @IsString({
+    message: 'Please provide a valid phone number',
+  })
+  phone?: string;
 }
